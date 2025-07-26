@@ -29,15 +29,18 @@ function playRound(humanChoice) {
     if (humanChoice === computerChoice) {
         console.log("Tie!");
         resultDisplay.textContent = "You tie!"
+        resultDisplay.style.color = "black";
     } else if (((humanChoice == "rock") && (computerChoice == "scissors")) ||
     ((humanChoice == "paper") && (computerChoice == "rock")) ||
     ((humanChoice == "scissors") && (computerChoice == "paper"))) {
         console.log("You win!");
         resultDisplay.textContent = "You win!"
+        resultDisplay.style.color = "green";
         humanScore++;
     } else {
         console.log("You lose!");
         resultDisplay.textContent = "You lose!"
+        resultDisplay.style.color = "red";
         computerScore++;
     }
     playerScoreDisplay.textContent = `You: ${humanScore}`;

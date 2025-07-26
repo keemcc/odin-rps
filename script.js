@@ -22,42 +22,16 @@ let computerScore = 0;
 
 function playRound(computerChoice, humanChoice) {
     console.log(`You chose ${humanChoice}, the computer chose ${computerChoice}!`);
-    switch (humanChoice + computerChoice) {
-        case "rockrock":
-            console.log("Tie!");
-            break;
-        case "rockpaper":
-            console.log("You lose!");
-            computerScore++;
-            break;
-        case "rockscissors":
-            console.log("You win!");
-            humanScore++;
-            break;
-        case "paperrock":
-            console.log("You win!");
-            humanScore++;
-            break;
-        case "paperpaper":
-            console.log("Tie!");
-            break;
-        case "paperscissors":
-            console.log("You lose!");
-            computerScore++;
-            break;
-        case "scissorsrock":
-            console.log("You lose!");
-            computerScore++;
-            break;
-        case "scissorspaper":
-            console.log("You win!");
-            humanScore++;
-            break;
-        case "scissorsscissors":
-            console.log("Tie!");
-            break;
-        default:
-            console.log("Invalid input");
+    if (humanChoice === computerChoice) {
+        console.log("Tie!");
+    } else if (((humanChoice == "rock") && (computerChoice == "scissors")) ||
+                ((humanChoice == "paper") && (computerChoice == "rock")) ||
+                ((humanChoice == "scissors") && (computerChoice == "paper"))) {
+        console.log("You win!");
+        humanScore++;
+    } else {
+        console.log("You lose!");
+        computerScore++;
     }
 }
 

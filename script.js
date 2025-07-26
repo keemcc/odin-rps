@@ -17,22 +17,31 @@ function getHumanChoice() {
     return choice.toLowerCase();
 }
 
-let humanScore = 0;
-let computerScore = 0;
+function playRound(humanChoice) {
+    const pickedOptionsDisplay = document.querySelector("#picked-options");
+    const resultDisplay = document.querySelector("#result");
+    const playerScoreDisplay = document.querySelector("#player-score");
+    const computerScoreDisplay = document.querySelector("#computer-score");
 
-function playRound(computerChoice, humanChoice) {
+    computerChoice = getComputerChoice();
     console.log(`You chose ${humanChoice}, the computer chose ${computerChoice}!`);
+    pickedOptionsDisplay.textContent = `You picked ${humanChoice}, the computer picked ${computerChoice}!`;
     if (humanChoice === computerChoice) {
         console.log("Tie!");
+        resultDisplay.textContent = "You tie!"
     } else if (((humanChoice == "rock") && (computerChoice == "scissors")) ||
-                ((humanChoice == "paper") && (computerChoice == "rock")) ||
-                ((humanChoice == "scissors") && (computerChoice == "paper"))) {
+    ((humanChoice == "paper") && (computerChoice == "rock")) ||
+    ((humanChoice == "scissors") && (computerChoice == "paper"))) {
         console.log("You win!");
+        resultDisplay.textContent = "You win!"
         humanScore++;
     } else {
         console.log("You lose!");
+        resultDisplay.textContent = "You lose!"
         computerScore++;
     }
+    playerScoreDisplay.textContent = `You: ${humanScore}`;
+    computerScoreDisplay.textContent = `Computer: ${computerScore}`;
 }
 
 function playGame() {
@@ -55,4 +64,21 @@ function playGame() {
     }
 }
 
-playGame();
+let humanScore = 0;
+let computerScore = 0;
+
+
+const buttons = document.querySelector(".buttons");
+buttons.addEventListener("click", (event) => {
+    switch (event.target.id) {
+        case "rock":
+            playRound("rock");
+            break;
+        case "paper":
+            playRound("paper");
+            break;
+        case "scissors":
+            playRound("scissors");
+            break;
+    }
+});
